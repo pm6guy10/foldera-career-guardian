@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 /* Foldera Design System - Dark Enterprise Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -83,7 +84,36 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', sans-serif, system-ui;
+    background-image: radial-gradient(at top, hsla(222, 47%, 11%, 1), hsla(222, 83%, 5%, 1));
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Hero gradient text effect */
+  .hero-gradient-text {
+    background: linear-gradient(to right, #ffffff, #a5f3fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+  }
+
+  /* Typewriter effect */
+  .typewriter {
+    border-right: 2px solid hsl(var(--electric-blue));
+    animation: typewriter-blink 1s infinite;
+  }
+
+  /* Fade in up animation */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  
+  .fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* Custom scrollbar */

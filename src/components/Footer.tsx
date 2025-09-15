@@ -18,8 +18,8 @@ const Footer = () => {
     Legal: [
       { name: "Terms of Service", href: "/terms" },
       { name: "Privacy Policy", href: "/privacy" },
-      { name: "Security", href: "/security" },
-      { name: "Compliance", href: "/compliance" }
+      { name: "Security", href: "#security" },
+      { name: "Careers", href: "/careers" }
     ],
     Support: [
       { name: "Documentation", href: "/docs" },

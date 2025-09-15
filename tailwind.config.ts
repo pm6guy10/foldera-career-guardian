@@ -152,6 +152,21 @@ export default {
             opacity: "0",
           },
         },
+        "radar-pulse": {
+          "0%": { 
+            boxShadow: "0 0 0 0 rgba(34,211,238,0.6)" 
+          },
+          "70%": { 
+            boxShadow: "0 0 0 20px rgba(34,211,238,0)" 
+          },
+          "100%": { 
+            boxShadow: "0 0 0 0 rgba(34,211,238,0)" 
+          }
+        },
+        "typewriter-blink": {
+          "0%, 50%": { borderColor: "transparent" },
+          "51%, 100%": { borderColor: "hsl(var(--electric-blue))" }
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -160,6 +175,8 @@ export default {
         "slide-up": "slide-up 0.6s ease-out",
         "electric-flow": "electric-flow 3s ease-in-out infinite",
         "scan-line": "scan-line 2s ease-in-out infinite",
+        "radar-pulse": "radar-pulse 2s infinite",
+        "typewriter-blink": "typewriter-blink 1s infinite",
       },
     },
   },
