@@ -1,104 +1,42 @@
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import heroImage from "@/assets/hero-guardian.jpg";
+"use client";
 
-const Hero = () => {
-  const [typewriterText, setTypewriterText] = useState('');
-  const [sequenceIndex, setSequenceIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+import React from "react";
 
-  const sequences = [
-    '⚠ One bad number detected…',
-    '⚠ Clause flagged by compliance…',
-    '⚠ Badge access denied…'
-  ];
-
-  useEffect(() => {
-    const type = () => {
-      const currentSequence = sequences[sequenceIndex % sequences.length];
-      let displayString = '';
-      
-      if (isDeleting) {
-        displayString = currentSequence.substring(0, charIndex - 1);
-      } else {
-        displayString = currentSequence.substring(0, charIndex + 1);
-      }
-
-      setTypewriterText(displayString);
-
-      if (!isDeleting && charIndex === currentSequence.length) {
-        setTimeout(() => setIsDeleting(true), 2000);
-        return;
-      } else if (isDeleting && charIndex === 0) {
-        setIsDeleting(false);
-        setSequenceIndex(prev => prev + 1);
-        setTypewriterText('');
-        return;
-      }
-      
-      if (isDeleting) {
-        setCharIndex(prev => prev - 1);
-      } else {
-        setCharIndex(prev => prev + 1);
-      }
-    };
-
-    const typingSpeed = isDeleting ? 50 : 100;
-    const timeoutId = setTimeout(type, typingSpeed);
-    
-    return () => clearTimeout(timeoutId);
-  }, [charIndex, isDeleting, sequenceIndex]);
-
-  const scrollToCTA = () => {
-    const ctaSection = document.getElementById('cta-section');
-    if (ctaSection) {
-      ctaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
-
+export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 opacity-20">
-        <img 
-          src={heroImage} 
-          alt="AI Guardian protecting enterprise data"
-          className="w-full h-full object-cover"
-        />
-      </div>
-      
-      {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tighter hero-gradient-text mb-6">
-          Three years into the 'future of work,'<br />
-          AI is still a ghost.
+    <section className="text-center py-24 bg-slate-950">
+      <div className="max-w-4xl mx-auto px-4">
+        {/* Headline */}
+        <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6">
+          Stop Babysitting the AI Productivity Ghost.
         </h1>
-        
-        <p className="text-xl sm:text-2xl text-ghost-white font-semibold mb-4 max-w-4xl mx-auto">
-          99 productivity apps later and your neck is still on the line when it screws up.
+
+        {/* Subcopy */}
+        <p className="text-xl text-slate-300 mb-8">
+          You don’t prompt it. You don’t pray it remembers. Foldera works while
+          you sleep — fixing chaos before it explodes.
         </p>
-        
-        <div className="mb-8 h-8 flex items-center justify-center">
-          <span className="text-electric-blue font-mono text-lg">
-            {typewriterText}
-            <span className="animate-typewriter-blink">|</span>
-          </span>
-        </div>
-        
-        <div className="flex justify-center relative">
-          <span className="absolute inset-0 rounded-lg bg-electric-blue animate-radar-pulse opacity-30"></span>
-          <Button 
-            onClick={scrollToCTA}
-            size="lg"
-            className="relative bg-electric-blue hover:bg-electric-blue/80 text-white font-semibold px-8 py-6 rounded-lg text-lg transition-all duration-300 transform hover:scale-105"
-          >
+
+        {/* CTA */}
+        <div className="flex justify-center gap-4 mb-12">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition">
+            Show Me My First Briefing
+          </button>
+          <button className="bg-slate-800 hover:bg-slate-700 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition">
             Book a Security-Cleared Demo
-          </Button>
+          </button>
+        </div>
+
+        {/* Audit Log Simulation */}
+        <div className="bg-black text-green-400 font-mono text-left p-6 rounded-xl shadow-lg max-w-2xl mx-auto">
+          <p>[07:18:42] Scanning /clients/contracts/proposal.docx</p>
+          <p>[07:18:44] Conflict detected → Drafting counter-offer</p>
+          <p>[07:19:10] Risk neutralized ✅</p>
+          <p>[07:19:16] Reviewing /boarddecks/Q4_financials.pptx</p>
+          <p>[07:19:31] Data inconsistency flagged → Cross-referencing sources</p>
+          <p>[07:19:42] Correction applied ✅</p>
         </div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
